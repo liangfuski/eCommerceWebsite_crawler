@@ -12,8 +12,8 @@ import pprint
 class EtsySpider(CrawlSpider):
 
     name = 'etsy'
-    allowed_domains = ['etsy.com']
-    start_urls = ['https://www.etsy.com/c/jewelry?explicit=1&locationQuery=1814991&order=date_desc']
+    allowed_domains = ['']
+    start_urls = ['']
 
     # process_request is used to process the request of the extracted link , see self._request_to_follow
     # callback is the function to parse the web page of the extracted link
