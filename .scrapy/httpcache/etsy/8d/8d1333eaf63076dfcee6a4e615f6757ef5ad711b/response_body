@@ -1,0 +1,1 @@
+{"info": {"line_number": 7, "source": "[string \"...\"]", "error": "'}' expected (to close '{' at line 6) near 'har'", "type": "LUA_INIT_ERROR", "message": "[string \"...\"]:7: '}' expected (to close '{' at line 6) near 'har'"}, "error": 400, "type": "ScriptError", "description": "Error happened while executing Lua script"}

@@ -1,0 +1,172 @@
+function main(splash, args)
+   local function search_for_shopping_button()
+     shopping_fee_button = splash:select("#estimated-shipping-variant > div > div:nth-child(2) > div:nth-child(1) > div > div > button")
+         if  not shopping_fee_button then
+             error('no such button is found')
+         else
+             shopping_fee_button:mouse_click()
+         end
+     assert (splash:wait(1))
+     input = splash:select('input.estimate-postal-code.input.input-large-mweb')
+         if not input then
+              error('no input is found')
+          else
+              input:mouse_click()
+              splash:send_text('90002')
+         end
+     end
+
+splash.images_enabled = false     -- turn off the pic in a web page
+splash:init_cookies( cookies )                                 --setting cookies so that the web is show in US format
+assert (splash:go(args.url))
+assert (splash:wait(1))
+search_for_shopping_button()
+assert (splash:wait(5))
+splash:set_viewport_full()
+local screenshot = splash:png()
+return {
+    html = splash:html(),
+    screenshot = screenshot }
+end
+
+cookies = {
+{
+    domain = ".etsy.com",
+    expirationDate = 1559814004,
+    hostOnly = false,
+    httpOnly = false,
+    name = "_fbp",
+    path = "/",
+    sameSite = "no_restriction",
+    secure = false,
+    session = false,
+    storeId = "0",
+    value = "fb.1.1552037964219.594672477",
+    id = 1
+},
+{
+    domain = ".etsy.com",
+    expirationDate = 1559813961,
+    hostOnly = false,
+    httpOnly = false,
+    name = "_gcl_au",
+    path = "/",
+    sameSite = "no_restriction",
+    secure = false,
+    session = false,
+    storeId = "0",
+    value = "1.1.1561070763.1552037962",
+    id = 2
+},
+{
+    domain = ".etsy.com",
+    expirationDate = 1586224705.011976,
+    hostOnly = false,
+    httpOnly = false,
+    name = "fve",
+    path = "/",
+    sameSite = "no_restriction",
+    secure = true,
+    session = false,
+    storeId = "0",
+    value = "1552037957.0",
+    id = 3
+},
+{
+    domain = ".etsy.com",
+    expirationDate = 1552039805,
+    hostOnly = false,
+    httpOnly = false,
+    name = "granify.session.qivBM",
+    path = "/",
+    sameSite = "no_restriction",
+    secure = false,
+    session = false,
+    storeId = "0",
+    value = "1552038005487",
+    id = 4
+},
+{
+    domain = ".etsy.com",
+    expirationDate = 1577808000,
+    hostOnly = false,
+    httpOnly = false,
+    name = "granify.uuid",
+    path = "/",
+    sameSite = "no_restriction",
+    secure = false,
+    session = false,
+    storeId = "0",
+    value = "a320b8b8-ce41-49f6-8fde-39a6163aaa77",
+    id = 5
+},
+{
+    domain = ".etsy.com",
+    expirationDate = 1552038060.061641,
+    hostOnly = false,
+    httpOnly = true,
+    name = "gtm_deferred",
+    path = "/",
+    sameSite = "no_restriction",
+    secure = true,
+    session = false,
+    storeId = "0",
+    value = "%5B%5D",
+    id = 6
+},
+{
+    domain = ".etsy.com",
+    expirationDate = 1583573958.619557,
+    hostOnly = false,
+    httpOnly = false,
+    name = "uaid",
+    path = "/",
+    sameSite = "no_restriction",
+    secure = true,
+    session = false,
+    storeId = "0",
+    value= "3oGGVOfrVEL4YceqAwXNgPQlktdjZACCmCYLVxhdrVSamJmiZKVUnpFl5u_slJZsHOHtnuYUFZ7qm1jkWJFe6evhrlTLAAA.",
+    id = 7
+},
+{
+    domain = ".etsy.com",
+    expirationDate = 1583573999.434819,
+    hostOnly = false,
+    httpOnly = false,
+    name = "user_prefs",
+    path = "/",
+    sameSite = "no_restriction",
+    secure = false,
+    session = false,
+    storeId = "0",
+    value = "Iv8pT_1uCBm3YPA-DX_MKWRXOfljZACCmCYLVyidF60UGuyipKOUnpiTk1pUCWSl5umGBgNpEJFXmpOjYwShsBCxDAA.",
+    id = 8
+},
+{
+    domain = "www.etsy.com",
+    hostOnly = true,
+    httpOnly = false,
+    name = "QSI_HistorySession",
+    path = "/",
+    sameSite = "no_restriction",
+    secure = true,
+    session = true,
+    storeId = "0",
+    value = "https%3A%2F%2Fwww.etsy.com%2Fhk-en%2Fcart%3Fref%3Dhdr~1552038007053",
+    id = 9
+},
+{
+    domain = "www.etsy.com",
+    expirationDate = 1583574000.935562,
+    hostOnly = true,
+    httpOnly = false,
+    name = "ua",
+    path = "/",
+    sameSite = "no_restriction",
+    secure = false,
+    session = false,
+    storeId = "0",
+    value = "531227642bc86f3b5fd7103a0c0b4fd6",
+    id = 10
+}
+}

@@ -1,0 +1,117 @@
+{
+    "button": "#estimated-shipping-variant > div > div:nth-child(2) > div:nth-child(1) > div > div > button", 
+    "cookies": [
+        {
+            "domain": ".etsy.com", 
+            "expirationDate": 1559835238, 
+            "hostOnly": false, 
+            "httpOnly": false, 
+            "name": "_fbp", 
+            "path": "/", 
+            "sameSite": "no_restriction", 
+            "secure": false, 
+            "session": false, 
+            "storeId": "0", 
+            "value": "fb.1.1552059189013.1769836739"
+        }, 
+        {
+            "domain": ".etsy.com", 
+            "expirationDate": 1559835185, 
+            "hostOnly": false, 
+            "httpOnly": false, 
+            "name": "_gcl_au", 
+            "path": "/", 
+            "sameSite": "no_restriction", 
+            "secure": false, 
+            "session": false, 
+            "storeId": "0", 
+            "value": "1.1.2072790042.1552059185"
+        }, 
+        {
+            "domain": ".etsy.com", 
+            "expirationDate": 1586245938.132742, 
+            "hostOnly": false, 
+            "httpOnly": false, 
+            "name": "fve", 
+            "path": "/", 
+            "sameSite": "no_restriction", 
+            "secure": true, 
+            "session": false, 
+            "storeId": "0", 
+            "value": "1552059179.0"
+        }, 
+        {
+            "domain": ".etsy.com", 
+            "expirationDate": 1552059294.112093, 
+            "hostOnly": false, 
+            "httpOnly": true, 
+            "name": "gtm_deferred", 
+            "path": "/", 
+            "sameSite": "no_restriction", 
+            "secure": true, 
+            "session": false, 
+            "storeId": "0", 
+            "value": "%5B%5D"
+        }, 
+        {
+            "domain": ".etsy.com", 
+            "hostOnly": false, 
+            "httpOnly": false, 
+            "name": "last_browse_page", 
+            "path": "/", 
+            "sameSite": "no_restriction", 
+            "secure": false, 
+            "session": true, 
+            "storeId": "0", 
+            "value": "https%3A%2F%2Fwww.etsy.com%2F"
+        }, 
+        {
+            "domain": ".etsy.com", 
+            "expirationDate": 1583595180.518957, 
+            "hostOnly": false, 
+            "httpOnly": false, 
+            "name": "uaid", 
+            "path": "/", 
+            "sameSite": "no_restriction", 
+            "secure": true, 
+            "session": false, 
+            "storeId": "0", 
+            "value": "Ax3CV7sFAxe1VF35Gxo3yJGQjk1jZACCmKZubRhdrVSamJmiZKXkWWJk6mxU5VXpWlZanmSUVplZEeHimGJc6JXnrFTLAAA."
+        }, 
+        {
+            "domain": ".etsy.com", 
+            "expirationDate": 1583595232.774076, 
+            "hostOnly": false, 
+            "httpOnly": false, 
+            "name": "user_prefs", 
+            "path": "/", 
+            "sameSite": "no_restriction", 
+            "secure": false, 
+            "session": false, 
+            "storeId": "0", 
+            "value": "ZQYWEmoWkS1XaC9r7e-M_GBwQoNjZACCmKZubSidEK0UGuyipKOUnpiTk1pUCWSl5umGBgNpEJFXmpOjYwShsBCxDAA."
+        }, 
+        {
+            "domain": "www.etsy.com", 
+            "expirationDate": 1583595234.806508, 
+            "hostOnly": true, 
+            "httpOnly": false, 
+            "name": "ua", 
+            "path": "/", 
+            "sameSite": "no_restriction", 
+            "secure": false, 
+            "session": false, 
+            "storeId": "0", 
+            "value": "531227642bc86f3b5fd7103a0c0b4fd6"
+        }
+    ], 
+    "headers": {
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8", 
+        "Accept-Language": "en", 
+        "Referer": "https://www.etsy.com/c/jewelry?explicit=1&locationQuery=1814991&order=date_desc&ref=pagination&page=7", 
+        "User-Agent": "Scrapy/1.5.1 (+https://scrapy.org)"
+    }, 
+    "input": "splash.args.input", 
+    "lua_source": "\nfunction main(splash, args)\n   local function search_for_shopping_button()\n     shopping_fee_button = splash:select(splash.args.button)\n         if  not shopping_fee_button then\n             error('no such button is found')\n         else\n             shopping_fee_button:mouse_click()\n         end\n     assert (splash:wait(1))\n     input = splash:select('input.estimate-postal-code.input.input-large-mweb')\n         if not input then \n              error('no input is found')\n          else \n              input:mouse_click()\n              splash:send_text('90002')\n         end\n     end\n\nsplash.images_enabled = false\nsplash:init_cookies(args.cookies)   -- setting cookies so that the web is show in US format\nassert (splash:go(args.url))\nassert (splash:wait(1))\nsearch_for_shopping_button()\nassert (splash:wait(5))\nsplash:set_viewport_full()\nlocal screenshot = splash:png()\nreturn {\n    html = splash:html(),\n    screenshot = screenshot,\n     har  = splash:har()}\nend", 
+    "url": "https://www.etsy.com/listing/225815204/huge-pearl-pendant14k-gf-or-925-gold?ga_order=date_desc&ga_search_type=all&ga_view_type=gallery&ga_search_query=&ref=sc_gallery-7-1&plkey=597594a27a4705a63cbdff2f2e187ae02214d3a4%3A225815204&bes=1"
+}
